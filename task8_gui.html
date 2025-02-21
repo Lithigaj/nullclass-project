@@ -1,0 +1,51 @@
+<code>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translation from Image</title>
+    <style>
+        body { font-family: sans-serif; }
+        input, button { margin: 5px; padding: 8px; }
+        #error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Translation from Image</h1>
+    <input type="file" id="imageInput">
+    <button onclick="translateImage()">Translate</button>
+    <p id="error"></p>
+    <p>Extracted Text: <span id="extractedText"></span></p>
+    <p>Tamil Translation: <span id="tamilTranslation"></span></p>
+
+    <script>
+        async function translateImage() {
+            // In a real implementation, this would extract text from the image and send it to the server.
+            // For demonstration purposes, let's simulate text extraction.
+            const image = document.getElementById('imageInput').files[0];
+            const extractedText = "hello world";
+            document.getElementById('extractedText').innerText = extractedText;
+
+            const response = await fetch('/translate8', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: extractedText })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById('error').innerText = data.error;
+                    document.getElementById('tamilTranslation').innerText = "";
+                } else {
+                    document.getElementById('tamilTranslation').innerText = data.tamil;
+                }
+            } else {
+                document.getElementById('error').innerText = "Error communicating with the server.";
+            }
+        }
+    </script>
+</body>
+</html>
+</code>

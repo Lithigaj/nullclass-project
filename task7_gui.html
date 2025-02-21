@@ -1,0 +1,46 @@
+<code>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>French to Tamil Translator</title>
+    <style>
+        body { font-family: sans-serif; }
+        input, button { margin: 5px; padding: 8px; }
+        #error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>French to Tamil Translator</h1>
+    <input type="text" id="frenchWord" placeholder="Enter French word">
+    <button onclick="translate()">Translate</button>
+    <p id="error"></p>
+    <p>Tamil Translation: <span id="tamilTranslation"></span></p>
+
+    <script>
+        async function translate() {
+            const word = document.getElementById('frenchWord').value;
+            document.getElementById('error').innerText = "";
+            const response = await fetch('/translate7', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ word: word })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById('error').innerText = data.error;
+                    document.getElementById('tamilTranslation').innerText = "";
+                } else {
+                    document.getElementById('tamilTranslation').innerText = data.tamil;
+                }
+            } else {
+                document.getElementById('error').innerText = "Error communicating with the server.";
+            }
+        }
+    </script>
+</body>
+</html>
+</code>

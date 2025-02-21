@@ -1,0 +1,4 @@
+<code>
+To run the voice translator:
+1. Execute the command: ./run_voice_translator.sh
+</code>

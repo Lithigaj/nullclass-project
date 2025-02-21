@@ -1,0 +1,11 @@
+<code>
+To run the tasks:
+
+1.  For Task 5, open task5_gui.html in a browser.
+2.  For Task 6, open task6_gui.html in a browser.
+3.  For Task 7, open task7_gui.html in a browser.
+4.  For Task 8, open task8_gui.html in a browser and run the python logic using ./run_image_translator.sh.
+5.  For Task 9, open task9_gui.html in a browser and run the python logic using ./run_logic_translation.sh.
+
+Note: These GUIs are basic structures and might require adjustments to work correctly. The server.js file provides placeholder responses for the GUI requests.
+</code>

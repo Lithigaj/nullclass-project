@@ -1,0 +1,4 @@
+<code>
+To run the image translator:
+1. Execute the command: ./run_image_translator.sh
+</code>

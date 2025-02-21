@@ -1,0 +1,5 @@
+<code>
+To run the quiz:
+1. Execute the command: ./run_quiz.sh
+2. Answer the questions by entering the number corresponding to your choice.
+</code>

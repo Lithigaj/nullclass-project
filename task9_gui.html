@@ -1,0 +1,46 @@
+<code>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>English to Hindi Translator</title>
+    <style>
+        body { font-family: sans-serif; }
+        input, button { margin: 5px; padding: 8px; }
+        #error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>English to Hindi Translator</h1>
+    <input type="text" id="englishWord" placeholder="Enter English word">
+    <button onclick="translate()">Translate</button>
+    <p id="error"></p>
+    <p id="translation"></p>
+
+    <script>
+        async function translate() {
+            const word = document.getElementById('englishWord').value;
+            document.getElementById('error').innerText = "";
+            const response = await fetch('/translate9', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ word: word })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById('error').innerText = data.error;
+                    document.getElementById('translation').innerText = "";
+                } else {
+                    document.getElementById('translation').innerText = data.translation;
+                }
+            } else {
+                document.getElementById('error').innerText = "Error communicating with the server.";
+            }
+        }
+    </script>
+</body>
+</html>
+</code>

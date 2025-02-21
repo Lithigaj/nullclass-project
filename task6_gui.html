@@ -1,0 +1,49 @@
+<code>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Translator</title>
+    <style>
+        body { font-family: sans-serif; }
+        button { margin: 5px; padding: 8px; }
+        #error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Voice Translator</h1>
+    <button onclick="startRecording()">Start Recording</button>
+    <p id="error"></p>
+    <p>English Audio: <span id="englishAudio"></span></p>
+    <p>Hindi Translation: <span id="hindiTranslation"></span></p>
+
+    <script>
+        async function startRecording() {
+            // In a real implementation, this would capture audio from the microphone and send it to the server.
+            // For demonstration purposes, let's simulate audio input.
+            const audio = "hello";
+            document.getElementById('englishAudio').innerText = audio;
+
+            const response = await fetch('/translate6', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ audio: audio })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById('error').innerText = data.error;
+                    document.getElementById('hindiTranslation').innerText = "";
+                } else {
+                    document.getElementById('hindiTranslation').innerText = data.hindi;
+                }
+            } else {
+                document.getElementById('error').innerText = "Error communicating with the server.";
+            }
+        }
+    </script>
+</body>
+</html>
+</code>

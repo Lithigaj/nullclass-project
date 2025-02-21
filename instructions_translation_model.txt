@@ -1,0 +1,4 @@
+<code>
+To run the translation model:
+1. Execute the command: ./run_translation_model.sh
+</code>

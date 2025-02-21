@@ -1,0 +1,4 @@
+<code>
+To run the realtime translator:
+1. Execute the command: ./run_realtime_translator.sh
+</code>

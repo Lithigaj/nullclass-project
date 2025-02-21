@@ -1,0 +1,4 @@
+<code>
+To run the fine-tuning:
+1. Execute the command: ./run_fine_tune.sh
+</code>

@@ -1,0 +1,31 @@
+<code>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English to Hindi Translator</title>
+</head>
+<body>
+    <h1>English to Hindi Translator</h1>
+    <input type="text" id="englishWord" placeholder="Enter English word">
+    <button onclick="translate()">Translate</button>
+    <p id="translation"></p>
+
+    <script type="module">
+        async function translate() {
+            const word = document.getElementById('englishWord').value;
+            const response = await fetch('/translate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ word: word })
+            });
+            const data = await response.json();
+            document.getElementById('translation').innerText = data.translation;
+        }
+    </script>
+</body>
+</html>
+</code>
